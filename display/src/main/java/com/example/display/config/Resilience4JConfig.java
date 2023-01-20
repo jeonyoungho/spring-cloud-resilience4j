@@ -18,7 +18,7 @@ public class Resilience4JConfig {
 		CircuitBreakerConfig circuitBreakerConfig =
 				CircuitBreakerConfig.custom()
 									.ringBufferSizeInClosedState(5) // 닫힌 상태에서의 호출 수로, 써킷을 열어야 할지 결정할 때 사용
-									.ringBufferSizeInHalfOpenState(1) // 열림 상태를 유지하는 시간(단위: 초), 해당 시간이후 반열림 상태로 변경
+									.ringBufferSizeInHalfOpenState(1) // 반열림 상태에서의 호출 수, 써킷을 다시 열거나 닫힘 상태로 돌아갈지를 결정할 때 사용 한다.
 									.failureRateThreshold(50) // 실패한 호출에 대한 임계값(백분율), 이 값을 초과하면 써킷 오픈
 									.waitDurationInOpenState(Duration.ofMillis(10000)) // 써킷 오픈 지속 시간
 									.slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED) // 통계 집계 방식, 마지막 N번의 호출 결과를 집계, COUNT_BASED / TIME_BASED
